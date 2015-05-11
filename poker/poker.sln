@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerTests", "PokerTests\PokerTests.csproj", "{D104574F-E017-4BB8-ABBC-ED53FF03E105}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "poker", "poker\poker.csproj", "{94BEED2C-4124-4FDD-BBC3-7B3682AF63E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94BEED2C-4124-4FDD-BBC3-7B3682AF63E1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{94BEED2C-4124-4FDD-BBC3-7B3682AF63E1}.Debug|x86.Build.0 = Debug|Any CPU
+		{94BEED2C-4124-4FDD-BBC3-7B3682AF63E1}.Release|x86.ActiveCfg = Release|Any CPU
+		{94BEED2C-4124-4FDD-BBC3-7B3682AF63E1}.Release|x86.Build.0 = Release|Any CPU
+		{D104574F-E017-4BB8-ABBC-ED53FF03E105}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D104574F-E017-4BB8-ABBC-ED53FF03E105}.Debug|x86.Build.0 = Debug|Any CPU
+		{D104574F-E017-4BB8-ABBC-ED53FF03E105}.Release|x86.ActiveCfg = Release|Any CPU
+		{D104574F-E017-4BB8-ABBC-ED53FF03E105}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PokerTests\PokerTests.csproj
+	EndGlobalSection
+EndGlobal
