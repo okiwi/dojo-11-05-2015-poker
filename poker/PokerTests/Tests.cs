@@ -43,7 +43,16 @@ namespace PokerTests
 			Assert.IsFalse (goodTurn);
 		}
 
+		[Test()]
+		public void isAStraight ()
+		{
+			var firstHand = new List<string>() { "8S", "9H", "TS", "JC", "QD"};
 
+			var game = new Poker ();
+			var goodHand = game.isAStraight (firstHand);
+
+			Assert.IsTrue (goodHand);
+		}
 
 	}
 }
