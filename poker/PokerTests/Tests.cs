@@ -31,6 +31,20 @@ namespace PokerTests
 			Assert.IsFalse (goodHand);
 		}
 
+		[Test()]
+		public void isNotValidTurn ()
+		{
+			var firstHand = new List<string>() { "8S", "3H", "KS", "9C", "KD"};
+			var secondHand = new List<string>() { "8S", "3H", "KS", "9C", "KD"};
+
+			var game = new Poker ();
+			var goodTurn = game.isValidTurn (firstHand, secondHand);
+
+			Assert.IsFalse (goodTurn);
+		}
+
+
+
 	}
 }
 

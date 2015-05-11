@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace poker
@@ -33,6 +34,18 @@ namespace poker
 				}
 			}
 
+			return true;
+		}
+
+		public bool isValidTurn (List<string> firstHand, List<string> secondHand){
+			HashSet<string> bothHands = new HashSet<string> ();
+
+			bothHands.UnionWith (firstHand);
+			bothHands.UnionWith (secondHand);
+
+			if (bothHands.Count != 10) {
+				return false;
+			}
 			return true;
 		}
 	}
