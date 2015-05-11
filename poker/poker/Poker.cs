@@ -11,7 +11,17 @@ namespace poker
 
 		public bool isValidHand(List<string> hand)
 		{
-			return hand.Count == 5;
+			if (hand.Count != 5) {
+				return false;
+			}
+
+			foreach(var card in hand){
+				if (card.Length != 2) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 	}
 }

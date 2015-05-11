@@ -12,12 +12,23 @@ namespace PokerTests
 		[Test()]
 		public void isValidHand ()
 		{
-			var hand =  new List<string>() { "2H", "3D", "5S", "9C", "KD"};
+			var hand = new List<string>() { "2H", "3D", "5S", "9C", "KD"};
 
 			var game = new Poker ();
 			var goodHand = game.isValidHand (hand);
 
 			Assert.IsTrue (goodHand);
+		}
+
+		[Test()]
+		public void isNotValidHand ()
+		{
+			var hand = new List<string>() { "fo", "ba", "ba", "9C", "KD"};
+
+			var game = new Poker ();
+			var goodHand = game.isValidHand (hand);
+
+			Assert.IsFalse (goodHand);
 		}
 
 	}
