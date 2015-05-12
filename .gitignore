@@ -1,0 +1,5 @@
+*.dll
+*.mdb
+bin/*
+test-results/
+*.userprefs
