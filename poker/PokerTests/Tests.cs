@@ -77,6 +77,14 @@ namespace PokerTests
 
 			Assert.IsFalse (twoPairsHand);
 
+			// maybe not 
+
+			var secondHand = new Hand( new List<string>() { "7S", "9H", "TS", "JC", "QD"});
+
+			var fourInARowHand = game.isAStraight (secondHand);
+
+			Assert.IsFalse (fourInARowHand);
+
 		}
 	}
 }
