@@ -7,44 +7,11 @@ namespace poker
 
 	public class Poker
 	{
-		private readonly List<char> suits = new List<char>(){'H', 'C', 'D','S'};
-		private readonly List<char> values = new List<char>(){'A', '2', '3','4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-		private readonly List<char> suite = new List<char>(){'A', '2', '3','4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
-
-
-		public Poker ()
-		{
-		}
-
-		bool isValidCard (string card)
-		{
-			if (card.Length != 2) {
-				return false;
-			}
-			return values.Contains (card [0]) && suits.Contains (card [1]);
-		}
-
-		public bool isValidHand(List<string> hand)
-		{
-			if (hand.Count != 5) {
-				return false;
-			}
-
-			foreach(var card in hand){
-
-				if (!isValidCard (card)) {
-					return false;
-				}
-			}
-
-			return true;
-		}
-
-		public bool isValidTurn (List<string> firstHand, List<string> secondHand){
+		public bool isValidTurn (Hand firstHand, Hand secondHand){
 			HashSet<string> bothHands = new HashSet<string> ();
 
-			bothHands.UnionWith (firstHand);
-			bothHands.UnionWith (secondHand);
+			bothHands.UnionWith (firstHand.Cards);
+			bothHands.UnionWith (secondHand.Cards);
 
 			if (bothHands.Count != 10) {
 				return false;
@@ -52,11 +19,11 @@ namespace poker
 			return true;
 		}
 
-		public bool isAStraight (List<string> firstHand){
+		public bool isAStraight (Hand firstHand){
 			var indexes = new List<int> ();
 
-			foreach (var card in firstHand) {
-				indexes.Add (suite.IndexOf (card [0]));
+			foreach (var card in firstHand.Cards) {
+				indexes.Add (Constants.Suite.IndexOf (card [0]));
 			}
 
 			indexes.Sort ();
@@ -72,7 +39,6 @@ namespace poker
 				lastIndex = item;
 
 			}
-
 
 			return true;
 		}

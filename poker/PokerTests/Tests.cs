@@ -12,10 +12,9 @@ namespace PokerTests
 		[Test()]
 		public void isValidHand ()
 		{
-			var hand = new List<string>() { "2H", "3D", "5S", "9C", "KD"};
+			var hand = new Hand( new List<string>() { "2H", "3D", "5S", "9C", "KD"});
 
-			var game = new Poker ();
-			var goodHand = game.isValidHand (hand);
+			var goodHand = hand.isValidHand ();
 
 			Assert.IsTrue (goodHand);
 		}
@@ -23,10 +22,9 @@ namespace PokerTests
 		[Test()]
 		public void isNotValidHand ()
 		{
-			var hand = new List<string>() { "fo", "ba", "ba", "9C", "KD"};
+			var hand = new Hand( new List<string>() { "fo", "ba", "ba", "9C", "KD"});
 
-			var game = new Poker ();
-			var goodHand = game.isValidHand (hand);
+			var goodHand = hand.isValidHand ();
 
 			Assert.IsFalse (goodHand);
 		}
@@ -34,8 +32,8 @@ namespace PokerTests
 		[Test()]
 		public void isNotValidTurn ()
 		{
-			var firstHand = new List<string>() { "8S", "3H", "KS", "9C", "KD"};
-			var secondHand = new List<string>() { "8S", "3H", "KS", "9C", "KD"};
+			var firstHand = new Hand( new List<string>() { "8S", "3H", "KS", "9C", "KD"});
+			var secondHand = new Hand( new List<string>() { "8S", "3H", "KS", "9C", "KD"});
 
 			var game = new Poker ();
 			var goodTurn = game.isValidTurn (firstHand, secondHand);
@@ -46,7 +44,7 @@ namespace PokerTests
 		[Test()]
 		public void isAStraight ()
 		{
-			var firstHand = new List<string>() { "8S", "9H", "TS", "JC", "QD"};
+			var firstHand = new Hand( new List<string>() { "8S", "9H", "TS", "JC", "QD"});
 
 			var game = new Poker ();
 			var goodHand = game.isAStraight (firstHand);
