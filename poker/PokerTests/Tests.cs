@@ -50,8 +50,34 @@ namespace PokerTests
 			var goodHand = game.isAStraight (firstHand);
 
 			Assert.IsTrue (goodHand);
+
+			// sanity check
+
+			var secondHand = new Hand( new List<string>() { "2S", "3H", "4S", "5C", "6D"});
+
+			goodHand = game.isAStraight (secondHand);
+
+			Assert.IsTrue (goodHand);
+
+			// still not sure
+
+			var thirdHand = new Hand( new List<string>() { "AS", "2H", "3S", "4C", "5D"});
+
+			goodHand = game.isAStraight (thirdHand);
+
+			Assert.IsTrue (goodHand);
 		}
 
+		[Test]
+		public void isNotAStraight(){
+			var firstHand = new Hand( new List<string>() { "8S", "8H", "TS", "TC", "QD"});
+
+			var game = new Poker ();
+			var twoPairsHand = game.isAStraight (firstHand);
+
+			Assert.IsFalse (twoPairsHand);
+
+		}
 	}
 }
 

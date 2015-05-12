@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Linq;
+using System.Linq;
 
 namespace poker
 {
@@ -9,6 +11,11 @@ namespace poker
 	{
 		public bool isValidTurn (Hand firstHand, Hand secondHand){
 			HashSet<string> bothHands = new HashSet<string> ();
+
+			if (!firstHand.isValidHand ())
+				return false;
+			if (!secondHand.isValidHand ())
+				return false;
 
 			bothHands.UnionWith (firstHand.Cards);
 			bothHands.UnionWith (secondHand.Cards);
@@ -20,28 +27,18 @@ namespace poker
 		}
 
 		public bool isAStraight (Hand firstHand){
-			var indexes = new List<int> ();
+			if (!firstHand.isValidHand ())
+				return false;
 
+			var values = new List<char> ();
 			foreach (var card in firstHand.Cards) {
-				indexes.Add (Constants.Suite.IndexOf (card [0]));
+				values.Add (card [0]);
 			}
-
-			indexes.Sort ();
-
-			var lastIndex = -1;
-			foreach (var item in indexes) {
-				if (lastIndex == -1) {
-					lastIndex = item;
-				} else if(item != lastIndex + 1){
-					return false;
-				}
-
-				lastIndex = item;
-
-			}
-
-			return true;
+			values.Sort ();
+			var straight = Constants.Values.Intersect (values).ToList();
+			return straight.Count == values.Count;
 		}
 	}
 }
 
+ 
