@@ -35,8 +35,16 @@ namespace poker
 				values.Add (card [0]);
 			}
 			values.Sort ();
+
+			var firstCardValue = firstHand.Cards [0] [0];
+			var firstCardIdx = Constants.Values.IndexOf (firstCardValue);
+			var suiteValues = Constants.Values.GetRange (firstCardIdx, 5);
+			suiteValues.Sort ();
+
+			var sameCards = Enumerable.SequenceEqual(values, suiteValues);
+
 			var straight = Constants.Values.Intersect (values).ToList();
-			return straight.Count == values.Count;
+			return straight.Count == values.Count && sameCards;
 		}
 	}
 }

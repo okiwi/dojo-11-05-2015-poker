@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>PokerTests</RootNamespace>
     <AssemblyName>PokerTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="nunit.mocks, Version=2.6.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <Private>False</Private>
+      <Package>nunit</Package>
     </Reference>
     <Reference Include="nunit.core.interfaces, Version=2.6.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <Private>False</Private>
@@ -41,9 +43,11 @@
     </Reference>
     <Reference Include="nunit.util, Version=2.6.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <Private>False</Private>
+      <Package>nunit</Package>
     </Reference>
     <Reference Include="nunit-console-runner, Version=2.6.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <Private>False</Private>
+      <Package>nunit</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>

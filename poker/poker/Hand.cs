@@ -4,8 +4,28 @@ using System.Collections.Generic;
 
 namespace poker
 {
-	public class Hand
+	public class Hand: IComparable<Hand>, IEquatable<Hand>
 	{
+		#region IEquatable implementation
+
+		public bool Equals (Hand otherHand)
+		{
+			if (otherHand == null)
+				return false;
+			if (this.Cards == otherHand.Cards) {
+				return true;
+			}
+			return false;
+		}
+
+		#endregion
+
+		#region IComparable implementation
+		public int CompareTo (Hand otherHand)
+		{
+			throw new NotImplementedException ();
+		}
+		#endregion
 
 		public Hand(List<string> cards)
 		{
