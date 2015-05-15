@@ -36,10 +36,26 @@ namespace poker
 			}
 			values.Sort ();
 
-			var firstCardValue = firstHand.Cards [0] [0];
+			bool aceHigh = false;
+			bool aceLow = false;
+			if (firstHand.hasAce) 
+			{
+				aceHigh = firstHand.aceHigh;
+				aceLow = firstHand.aceLow;
+			}
+
+			var firstCardValue = values [0];
 			var firstCardIdx = Constants.Suite.IndexOf (firstCardValue);
+			if (aceHigh) { // special case for royal straight
+				firstCardIdx = 9;
+			} 
+			if (aceLow) { // special case for low straight
+				firstCardIdx = 0;
+			}
+
 			if (firstCardIdx + 5 > Constants.Suite.Count)
 				return false;
+
 			var suiteValues = Constants.Suite.GetRange (firstCardIdx, 5);
 			suiteValues.Sort ();
 

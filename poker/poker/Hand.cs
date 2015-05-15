@@ -1,34 +1,52 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace poker
 {
-	public class Hand: IComparable<Hand>, IEquatable<Hand>
+	public class Hand
 	{
-		#region IEquatable implementation
+		public bool aceHigh {
+			get{
+				if (this.hasAce) {
+					var aceAndKing = (from c in this.Cards
+										where c [0] == 'K'
+										select c).FirstOrDefault();
 
-		public bool Equals (Hand otherHand)
-		{
-			if (otherHand == null)
+					return aceAndKing != null;
+				}
 				return false;
-			if (this.Cards == otherHand.Cards) {
-				return true;
 			}
-			return false;
 		}
 
-		#endregion
-
-		#region IComparable implementation
-		public int CompareTo (Hand otherHand)
-		{
-			throw new NotImplementedException ();
+		public bool aceLow {
+			get{
+				if (this.hasAce) {
+					var aceAndTwo = (from c in this.Cards
+										where c [0] == '2'
+										select c).FirstOrDefault();
+					return aceAndTwo != null;
+				}
+				return false;
+			}
 		}
-		#endregion
+
+		public bool hasAce {
+			get{
+				var ace = (from c 
+							in this.Cards 
+							where c [0] == 'A' 
+							select c).FirstOrDefault();
+				return ace != null;
+			}
+		}
 
 		public Hand(List<string> cards)
 		{
+			if (cards.Count > 5) {
+				cards.RemoveRange (5, cards.Count - 5);
+			}
 			Cards = cards;
 		}
 

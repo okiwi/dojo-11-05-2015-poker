@@ -20,6 +20,39 @@ namespace PokerTests
 		}
 
 		[Test()]
+		public void handCantHaveMoreThan5Cards ()
+		{
+			var hand = new Hand( new List<string>() { "2H", "3D", "5S", "9C", "KD", "3C" });
+
+			var goodHand = hand.isValidHand ();
+
+			Assert.AreEqual (5, hand.Cards.Count);
+			Assert.IsTrue (goodHand);
+		}
+
+		[Test()]
+		public void handIsAceHigh ()
+		{
+			var hand = new Hand( new List<string>() { "2H", "3D", "5S", "9C", "AD" });
+
+			var goodHand = hand.isValidHand ();
+
+			Assert.AreEqual (5, hand.Cards.Count);
+			Assert.IsTrue (goodHand);
+		}
+
+		[Test()]
+		public void handIsAceLow ()
+		{
+			var hand = new Hand( new List<string>() { "AH", "3D", "5S", "9C", "KD", "3C" });
+
+			var goodHand = hand.isValidHand ();
+
+			Assert.AreEqual (5, hand.Cards.Count);
+			Assert.IsTrue (goodHand);
+		}
+
+		[Test()]
 		public void isNotValidHand ()
 		{
 			var hand = new Hand( new List<string>() { "fo", "ba", "ba", "9C", "KD"});
@@ -91,6 +124,28 @@ namespace PokerTests
 		public void isRoyalStraight ()
 		{
 			var firstHand = new Hand (new List<string> () { "TS", "JC", "QD", "KH", "AD" });
+
+			var game = new Poker ();
+			var goodHand = game.isAStraight (firstHand);
+
+			Assert.IsTrue (goodHand);
+		}
+
+		[Test()]
+		public void isWeakStraight ()
+		{
+			var firstHand = new Hand (new List<string> () { "AS", "2C", "3D", "4H", "5D" });
+
+			var game = new Poker ();
+			var goodHand = game.isAStraight (firstHand);
+
+			Assert.IsTrue (goodHand);
+		}
+
+		[Test()]
+		public void detectUnorderedStraight ()
+		{
+			var firstHand = new Hand (new List<string> () { "TS", "8S", "QD", "9H", "JC" });
 
 			var game = new Poker ();
 			var goodHand = game.isAStraight (firstHand);
