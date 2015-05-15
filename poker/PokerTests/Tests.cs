@@ -86,6 +86,17 @@ namespace PokerTests
 			Assert.IsFalse (fourInARowHand);
 
 		}
+
+		[Test()]
+		public void isRoyalStraight ()
+		{
+			var firstHand = new Hand (new List<string> () { "TS", "JC", "QD", "KH", "AD" });
+
+			var game = new Poker ();
+			var goodHand = game.isAStraight (firstHand);
+
+			Assert.IsTrue (goodHand);
+		}
 	}
 }
 

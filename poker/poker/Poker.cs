@@ -37,8 +37,10 @@ namespace poker
 			values.Sort ();
 
 			var firstCardValue = firstHand.Cards [0] [0];
-			var firstCardIdx = Constants.Values.IndexOf (firstCardValue);
-			var suiteValues = Constants.Values.GetRange (firstCardIdx, 5);
+			var firstCardIdx = Constants.Suite.IndexOf (firstCardValue);
+			if (firstCardIdx + 5 > Constants.Suite.Count)
+				return false;
+			var suiteValues = Constants.Suite.GetRange (firstCardIdx, 5);
 			suiteValues.Sort ();
 
 			var sameCards = Enumerable.SequenceEqual(values, suiteValues);
