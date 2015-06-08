@@ -7,55 +7,43 @@ namespace poker
 
 	public class Poker
 	{
-		private readonly List<char> suits = new List<char>(){'H', 'C', 'D','S'};
-		private readonly List<char> values = new List<char>(){'A', '2', '3','4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-		private readonly List<char> suite = new List<char>(){'A', '2', '3','4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
 
+		
+		private readonly List<char> suite = new List<char>(){'A', '2', '3','4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
 
 		public Poker ()
 		{
 		}
 
-		bool isValidCard (string card)
+		public PokerResult evaluate (List<string> firstHand, List<string> secondHand)
 		{
-			if (card.Length != 2) {
-				return false;
+			var first = new Hand (firstHand);
+			var second = new Hand (secondHand);
+
+			if (!isValidTurn(first, second)) {
+				throw new ArgumentException ();
 			}
-			return values.Contains (card [0]) && suits.Contains (card [1]);
+			if (isAStraight (first)) {
+				return new PokerResult () { Winner = "firstHand", Rank = "Straight" };
+			}
+			if (isAStraight (second)) {
+				return new PokerResult () { Winner = "secondHand", Rank = "Straight" };
+			}
+			return new PokerResult ();
 		}
 
-		public bool isValidHand(List<string> hand)
-		{
-			if (hand.Count != 5) {
+		private bool isValidTurn (Hand firstHand, Hand secondHand){
+			if (!firstHand.isValid() || !secondHand.isValid()) {
 				return false;
 			}
+			return firstHand.noDuplicateCards (secondHand);
 
-			foreach(var card in hand){
-
-				if (!isValidCard (card)) {
-					return false;
-				}
-			}
-
-			return true;
 		}
 
-		public bool isValidTurn (List<string> firstHand, List<string> secondHand){
-			HashSet<string> bothHands = new HashSet<string> ();
-
-			bothHands.UnionWith (firstHand);
-			bothHands.UnionWith (secondHand);
-
-			if (bothHands.Count != 10) {
-				return false;
-			}
-			return true;
-		}
-
-		public bool isAStraight (List<string> firstHand){
+		private bool isAStraight (Hand hand){
 			var indexes = new List<int> ();
 
-			foreach (var card in firstHand) {
+			foreach (var card in hand.Cards) {
 				indexes.Add (suite.IndexOf (card [0]));
 			}
 
